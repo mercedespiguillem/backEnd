@@ -16,9 +16,8 @@ const newProduct2 = {
 
 const contenedorTest = new Contenedor("./products.txt");
 
-//prueba.save(product1).then(x=>console.log(x))
-//prueba.save(product2).then(x=>console.log(x))
-// prueba.save(product3).then(x=>console.log(x))
-//prueba.getById(3).then(x => console.log(x))
-contenedorTest.deleteById(5);
-// contenedorTest.deleteAll();
+// contenedorTest.save(newProduct1)
+//contenedorTest.save(newProduct2)
+// contenedorTest.getById(3)
+// contenedorTest.deleteById(5);
+contenedorTest.deleteAll();

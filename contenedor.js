@@ -8,25 +8,24 @@ class Contenedor {
   }
 
   async save(producto) {
-
-  // El resultado de la funcion getall() es el array de productos
-    let arrayDeProductos = await this.getAll();
-  // console.log(arrayDeProductos);
+    // El resultado de la funcion getall() es el array de productos
+    let productsArray = await this.getAll();
+    // console.log(arrayDeProductos);
 
     // inicializo la propiedad id en 1
 
     let id = 1;
-    if (arrayDeProductos.length > 0) {
-      arrayDeProductos.map((prod) => (prod.id = id+1));
+    if (productsArray.length > 0) {
+      productsArray.map((prod) => (prod.id = id + 1));
     }
-    
+
     const nuevoProducto = { ...producto, id: id };
-    arrayDeProductos.push(nuevoProducto);
+    productsArray.push(nuevoProducto);
 
     try {
-      await fs.writeFile(`${this.file}`, JSON.stringify(product, null, 2));
-    } catch (err) {
-      console.log("No se ha podido agregar el objeto", err);
+      await fs.writeFile(`${this.file}`, JSON.stringify(producto, null, 2));
+    } catch (error) {
+      console.log("No se ha podido agregar el objeto", error);
     }
   }
 
@@ -45,8 +44,8 @@ class Contenedor {
   async getById(id) {
     let product;
     try {
-      const products = await this.getAll();
-      product = products.find((el) => el.id == id);
+      const productsArray = await this.getAll();
+      product = productsArray.find((el) => el.id == id);
       return product;
     } catch {
       console.log("No se pudo encontrar el producto por id");
@@ -54,8 +53,8 @@ class Contenedor {
   }
 
   async deleteById(id) {
-    const products = await this.getAll();
-    const rest = products.filter((el) => parseInt(el.id) != parseInt(id));
+    const productsArray = await this.getAll();
+    const rest = productsArray.filter((el) => parseInt(el.id) != parseInt(id));
     await this.deleteAll();
     try {
       await fs.writeFile(this.file, JSON.stringify(rest, null, 2));
