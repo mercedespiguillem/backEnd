@@ -1,0 +1,12 @@
+{
+  "name": "desafioclase3y4_piguillem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "desafioClase3y4.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
