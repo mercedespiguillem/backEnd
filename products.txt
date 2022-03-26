@@ -1,0 +1,28 @@
+ [
+  {
+    id: 1,
+    name: "Gorra",
+    price: 578.9,
+  },
+  {
+    id: 2,
+    name: "Medias",
+    price: 550,
+  },
+  {
+    id: 3,
+    name: "Remera",
+    price: 300,
+  },
+  {
+    id: 4,
+    name: "Buzo",
+    price: 700.9,
+  },
+  {
+    id: 5,
+    name: "Pantalon",
+    price: 578.9,
+  },
+  
+];
