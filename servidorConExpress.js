@@ -9,11 +9,12 @@ const server = app.listen(8080, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send('<h1 style="color: red">Bienvenidos al desafio de servidor express</h1>');
+  res.send(
+    '<h1 style="color: red">Bienvenidos al desafio de servidor express las rutas disponibles son: /productos y /productoRandom ;)</h1>'
+  );
 });
 
 // Ruta que devuelve el array de productos
-
 
 app.get("/productos", (req, res) => {
   productos.getAll().then((resp) => res.send(resp));
