@@ -1,28 +1,21 @@
- [
+[
   {
-    id: 1,
-    name: "Gorra",
-    price: 578.9,
+    "title": "Remera",
+    "price": 570,
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+    "id": 1
   },
   {
-    id: 2,
-    name: "Medias",
-    price: 550,
+    "title": "Pantalon",
+    "price": 1200,
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
+    "id": 2
   },
   {
-    id: 3,
-    name: "Remera",
-    price: 300,
-  },
-  {
-    id: 4,
-    name: "Buzo",
-    price: 700.9,
-  },
-  {
-    id: 5,
-    name: "Pantalon",
-    price: 578.9,
-  },
-  
-];
+    "title": "Campera",
+    "price": 2500,
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
+    "id": 3
+  }
+
+]

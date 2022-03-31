@@ -4,7 +4,7 @@ const newProduct1 = {
   title: "Musculosa",
   price: 700,
   thumbnail:
-    "https://www.google.com/search?q=remera&rlz=1C1PDZP_esAR950AR952&sxsrf=APq-WBvGJ0yfEGv02qvGoxdiEgrAwpMPIQ:1648269028651&source=lnms&tbm=isch&sa=X&ved=2ahUKEwictcnP-OL2AhUAGbkGHZRqDn4Q_AUoAXoECAEQAw&biw=1366&bih=625&dpr=1#imgrc=ffXK8uDRHLRKYM",
+    "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
 };
 
 const newProduct2 = {
@@ -16,8 +16,10 @@ const newProduct2 = {
 
 const contenedorTest = new Contenedor("./products.txt");
 
-// contenedorTest.save(newProduct1)
-//contenedorTest.save(newProduct2)
-// contenedorTest.getById(3)
-// contenedorTest.deleteById(5);
-contenedorTest.deleteAll();
+// contenedorTest.save(newProduct1);
+// contenedorTest.save(newProduct2)
+// contenedorTest.getById(5)
+// contenedorTest.deleteById(2);
+// contenedorTest.deleteAll();
+// contenedorTest.getAll();
+

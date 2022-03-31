@@ -7,23 +7,25 @@ class Contenedor {
     this.file = file;
   }
 
-  async save(producto) {
+  async save(product) {
     // El resultado de la funcion getall() es el array de productos
     let productsArray = await this.getAll();
-    // console.log(arrayDeProductos);
-
-    // inicializo la propiedad id en 1
 
     let id = 1;
     if (productsArray.length > 0) {
-      productsArray.map((prod) => (prod.id = id + 1));
+      id = productsArray[productsArray.length - 1].id + 1;
     }
 
-    const nuevoProducto = { ...producto, id: id };
-    productsArray.push(nuevoProducto);
+    const newProduct = { ...product, id: id };
+    productsArray.push(newProduct);
 
     try {
-      await fs.writeFile(`${this.file}`, JSON.stringify(producto, null, 2));
+      await fs.promises.writeFile(
+        this.file,
+        JSON.stringify(productsArray, null, 2)
+      );
+      console.log(id);
+      return id;
     } catch (error) {
       console.log("No se ha podido agregar el objeto", error);
     }
@@ -33,11 +35,12 @@ class Contenedor {
     try {
       // Lee el archivo y lo guarda en una variable
       let content = await fs.promises.readFile(`${this.file}`, "utf-8");
-
-      // Muestra el contenido del archivo por consola
-      console.log(content);
+      // console.log(JSON.parse(content));
+      // Retorna un array de objetos
+      return JSON.parse(content);
     } catch (err) {
       console.log(`Error al leer los productos: `, err);
+      return [];
     }
   }
 
@@ -45,8 +48,12 @@ class Contenedor {
     let product;
     try {
       const productsArray = await this.getAll();
-      product = productsArray.find((el) => el.id == id);
-      return product;
+      if ((product = productsArray.find((el) => el.id == id))) {
+        console.log(product);
+        return product;
+      } else {
+        return console.log("null");
+      }
     } catch {
       console.log("No se pudo encontrar el producto por id");
     }
@@ -57,14 +64,33 @@ class Contenedor {
     const rest = productsArray.filter((el) => parseInt(el.id) != parseInt(id));
     await this.deleteAll();
     try {
-      await fs.writeFile(this.file, JSON.stringify(rest, null, 2));
+      await fs.promises.writeFile(this.file, JSON.stringify(rest, null, 2));
     } catch (error) {
-      throw new Error(`Error al borrar: `, error);
+      console.log(`Error al borrar: `, error);
+    }
+  }
+
+  async deleteById(id) {
+    const productsArray = await this.getAll();
+
+    try {
+      const rest = productsArray.filter(
+        (el) => parseInt(el.id) != parseInt(id)
+      );
+      console.log(` Se eliminó el producto:`, rest);
+      try {
+        fs.promises.writeFile(this.file, JSON.stringify(rest, null, 2));
+      } catch (err) {
+        console.log(err);
+      }
+      //   await fs.promises.writeFile(this.file, );
+    } catch (error) {
+      console.log(`Error al borrar: `, error);
     }
   }
 
   async deleteAll() {
-    fs.unlink(`${this.file}`, (error) => {
+    fs.unlink(this.file, (error) => {
       error
         ? console.log(`error al borrar archivo: ${error}`)
         : console.log(`Archivo borrado con exito`);
@@ -72,4 +98,5 @@ class Contenedor {
   }
 }
 
+module.exports = Contenedor;
 module.exports = Contenedor;
