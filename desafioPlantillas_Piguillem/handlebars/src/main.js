@@ -3,10 +3,11 @@ const handlebars = require("express-handlebars");
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(express.static('public'))
+// espacio publico del server
+app.use(express.static("public"));
 
 const ProductosApi = require("../api/productos");
 const productosApi = new ProductosApi();
@@ -23,7 +24,7 @@ app.engine(
     // plantilla ppal
     defaultLayout: "index.hbs",
     // ruta a la plantilla ppal
-    layoutsDir: __dirname + "/views/layouts/",
+    // layoutsDir: __dirname + "/views/layouts/",
   })
 );
 
@@ -34,44 +35,18 @@ app.set("view engine", "hbs");
 
 app.set("views", "./views");
 
-// espacio publico del server
-
-app.use(express.static("public"));
-
-// const products = [
-//   {
-//     title: "Remera",
-//     price: 570,
-//     thumbnail:
-//       "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
-//     id: 1,
-//   },
-//   {
-//     title: "Pantalon",
-//     price: 1200,
-//     thumbnail:
-//       "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
-//     id: 2,
-//   },
-//   {
-//     title: "Campera",
-//     price: 2500,
-//     thumbnail:
-//       "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
-//     id: 3,
-//   },
-// ];
+app.post("/productos", (req, res) => {
+  const prod = req.body;
+  productosApi.save(prod);
+  res.redirect("/");
+});
 
 app.get("/productos", (req, res) => {
   let products = productosApi.getAll();
-  res.render("main", { productos : products,
-  productosEnArray: products.length });
-});
-
-app.post("/productos", (req, res) => {
-  const prod = req.body
-  productosApi.save(prod);
-  res.redirect("/");
+  res.render("main", {
+    productos: products,
+    productosEnArray: products.length > 0,
+  });
 });
 
 const PORT = 8080;
