@@ -5,28 +5,28 @@ class ProductosApi {
         title: "Remera",
         price: 570,
         thumbnail:
-          "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+          "https://cdn0.iconfinder.com/data/icons/summer-405/64/T_shirt-cloth-flower-summer-shirt-256.png",
         id: 1,
       },
       {
-        title: "Pantalon",
+        title: "Zapatillas",
         price: 1200,
         thumbnail:
-          "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
+          "https://cdn3.iconfinder.com/data/icons/footwear-lineal-color-set/512/Sneakers001-256.png",
         id: 2,
       },
       {
-        title: "Campera",
+        title: "Buzo",
         price: 2500,
         thumbnail:
-          "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
+          "https://cdn2.iconfinder.com/data/icons/men-clothes-lineal-color/512/hoodie-128.png",
         id: 3,
       },
       {
         title: "Mochila",
         price: 5600,
         thumbnail:
-          "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
+          "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png",
         id: 4,
       },
     ];

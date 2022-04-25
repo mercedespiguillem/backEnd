@@ -1,6 +1,7 @@
+// const { promises: fs } = require("fs");
 const fs = require("fs");
 
-// const file = "./mensajes.json";
+// const file = "/mensajes.json";
 
 class Messages {
   constructor(file) {

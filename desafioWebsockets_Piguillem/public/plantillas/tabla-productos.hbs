@@ -2,11 +2,11 @@
   .table td, .table th { vertical-align: middle; }
 </style>
 
-{{#if productos.length}}
+{{#if hayProductos}}
   <h2>Lista de Productos</h2>
-  <div class="table-responsive">
-    <table class="table table-dark">
-      <tr>
+  <div class="table-responsive pt-5">
+    <table class="table table-success table-striped">
+      <tr class="table-secondary">
         <th>Nombre</th>
         <th>Precio</th>
         <th>Foto</th>
@@ -24,4 +24,8 @@
       {{/each}}
     </table>
   </div>
+    {{#else}}
+        <h3 class="alert alert-danger">No hay productos</h1>
+    {{/else}}
+
 {{/if}}

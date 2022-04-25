@@ -21,12 +21,15 @@
   </head>
 
   <body>
+
+<!-- .......................SECCION PRODUCTOS............................................ -->
+
     <div class="container mt-3">
       <div class="jumbotron">
         <h1>Ingrese Producto</h1>
         <br />
 
-        <form id="formAgregarProducto">
+        <form id="formAgregarProducto" onsubmit=addProduct(this)>
           <!-- Campo nombre del producto -->
           <div class="form-group">
             <label for="nombre">Nombre</label>
@@ -65,65 +68,32 @@
         <div id="productos"></div>
       </div>
 
+
       <div class="jumbotron">
-        <h1>Centro de Mensajes</h1>
-        <br />
-        <div class="col-md-6 p-5">
-          <form onsubmit="addMessage(this)">
-            <label for="basic-url" class="form-label">Email</label>
-            <input
-              type="email"
-              id="username"
-              class="col-auto form-control mb-3"
-              placeholder="Ingresa tu email"
-              required
-            />
-            <label for="basic-url" class="form-label">Mensaje</label>
-            <input
-              type="text"
-              id="text"
-              class="form-control mb-3"
-              placeholder="Escribe tu mensaje"
-            />
-            <input
-              type="submit"
-              class="btn btn-dark m-2"
-              value="Enviar mensaje"
-            />
-          </form>
-        </div>
-      </div>
-      <!-- <div class="jumbotron">
-        <h1>Centro de Mensajes</h1>
-        <br />
-
-        <input
-          type="text"
-          id="inputUsername"
-          class="form-control w-50 my-2 mr-2"
-          placeholder="Ingresá tu email"
-        />
-
-        <hr />
-
-        <div id="mensajes">
-
-            <form id="formPublicarMensaje" class="form-inline" autocomplete="off">
-              <div class="form-group">
-                <input
-                  id="inputMensaje"
-                  type="text"
-                  class="form-control my-2 mr-2"
-                  placeholder="Ingresá un mensaje..."
-                />
-                <button id="btnEnviar" type="submit" class="btn btn-primary my-2">
-                  Enviar!
-                </button>
-              </div>
+          <h1>Centro de Mensajes</h1>
+                <br>
+          <div class="col-md-6 p-5">
+            <form onsubmit=addMessage(this)>
+              <label for="basic-url" class="form-label">Email</label>
+              <input
+                type="email"
+                id="inputUsername"
+                class="col-auto form-control mb-3"
+                placeholder="Ingresa tu email"
+                required
+              />
+              <label for="basic-url" class="form-label">Mensaje</label>
+              <input
+                type="text"
+                id="inputMessage"
+                class="form-control mb-3"
+                placeholder="Escribe tu mensaje"
+              />
+              <input type="submit" class="btn btn-dark m-2" value="Enviar mensaje" />
             </form>
-        </div> -->
-    </div>
-
+            <div id="mensajes"></div>
+          </div>
+      </div>
     <script src="js/main.js"></script>
   </body>
 </html>
