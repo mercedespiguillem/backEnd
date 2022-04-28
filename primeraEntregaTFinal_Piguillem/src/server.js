@@ -7,22 +7,29 @@ const ProductosApi = require("./contenedores/ProductosApi");
 const productosApi = new ProductosApi("products.json");
 const carritosApi = new ProductosApi("cart.json");
 
+// MIDDLEWARES administrador
 
-// permisos de administrador MIDDLEWARES
+const esAdmin = true;
 
-const esAdmin = true
-
-function crearErrorNoEsAdmin(ruta, metodo) {
-    
+function errorNoAdmin(ruta, metodo) {
+  const error = {
+    error: -1,
+  };
+  if ((ruta, metodo)) {
+    error.descripcion = `ruta ${ruta} metodo ${metodo} no autorizado.`;
+  } else {
+    error.descripcion = "No autorizado";
+  }
+  return error;
 }
 
 function soloAdmins(req, res, next) {
+  if (!esAdmin) {
+    res.json(errorNoAdmin());
+  } else {
+    next();
+  }
 }
-
-
-
-
-
 
 // configuro router de PRODUCTOS
 
@@ -41,7 +48,7 @@ productsRouter.get("/:id", async (req, res) => {
   res.send(console.log(`El producto ${req.params.id} ha sido encontrado`));
 });
 
-productsRouter.post("/", async (req, res) => {
+productsRouter.post("/", esAdmin, async (req, res) => {
   const nuevoProducto = await productosApi.save(req.body);
 
   let timeStamp = Date.now();
@@ -53,14 +60,14 @@ productsRouter.post("/", async (req, res) => {
   res.json(console.log(products));
 });
 
-productsRouter.put("/:id", async (req, res) => {
+productsRouter.put("/:id", esAdmin, async (req, res) => {
   const param = req.params.id;
   const property = req.body;
   productosApi.updatebyId(param, property);
   res.json(`El producto con id ${param} ha sido actualizado`);
 });
 
-productsRouter.delete("/:id", async (req, res) => {
+productsRouter.delete("/:id", esAdmin, async (req, res) => {
   const param = req.params.id;
 
   res.json(await productosApi.deleteById(param));
