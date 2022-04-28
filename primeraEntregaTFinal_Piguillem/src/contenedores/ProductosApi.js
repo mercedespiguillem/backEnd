@@ -95,24 +95,24 @@ class ProductosApi {
     }
   }
 
-  async deleteById(id) {
-    const productsArray = await this.getAll();
+  // async deleteById(id) {
+  //   const productsArray = await this.getAll();
 
-    try {
-      const rest = productsArray.filter(
-        (el) => parseInt(el.id) != parseInt(id)
-      );
-      console.log(` Se eliminó el producto:`, rest);
-      try {
-        fs.promises.writeFile(this.file, JSON.stringify(rest, null, 2));
-      } catch (err) {
-        console.log(err);
-      }
-      //   await fs.promises.writeFile(this.file, );
-    } catch (error) {
-      console.log(`Error al borrar: `, error);
-    }
-  }
+  //   try {
+  //     const rest = productsArray.filter(
+  //       (el) => parseInt(el.id) != parseInt(id)
+  //     );
+  //     console.log(` Se eliminó el producto:`, rest);
+  //     try {
+  //       fs.promises.writeFile(this.file, JSON.stringify(rest, null, 2));
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //     //   await fs.promises.writeFile(this.file, );
+  //   } catch (error) {
+  //     console.log(`Error al borrar: `, error);
+  //   }
+  // }
 
   async deleteAll() {
     fs.unlink(this.file, (error) => {

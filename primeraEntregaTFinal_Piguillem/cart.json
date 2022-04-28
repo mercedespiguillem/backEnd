@@ -1,0 +1,103 @@
+[
+  {
+    "id": 1,
+    "productos": {
+      "title": "Remera",
+      "price": 500,
+      "description": "Remera de Algodon",
+      "stock": 50,
+      "codigo": 421,
+      "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
+    }
+  },
+  {
+    "id": 2
+  },
+  {
+    "id": 3
+  },
+  {
+    "id": 4
+  },
+  {
+    "id": 5
+  },
+  {
+    "id": 6
+  },
+  {
+    "id": 7
+  },
+  {
+    "id": 8,
+    "timeStamp": 1651110066249,
+    "productos": {}
+  },
+  {
+    "id": 9
+  },
+  {
+    "id": 10,
+    "timeStamp": 1651110145887
+  },
+  {
+    "id": 11
+  },
+  {
+    "id": 12,
+    "timeStamp": 1651110182496,
+    "productos": {
+      "products": {}
+    }
+  },
+  {
+    "id": 13
+  },
+  {
+    "id": 14,
+    "timeStamp": 1651110293117,
+    "productos": {}
+  },
+  {
+    "id": 15
+  },
+  {
+    "id": 16,
+    "timeStamp": 1651110331420,
+    "productos": {}
+  },
+  {
+    "id": 17
+  },
+  {
+    "id": 18,
+    "timeStamp": 1651110375257,
+    "productos": {
+      "productos": {
+        "title": "Campera",
+        "price": 500,
+        "description": "Remera de Algodon",
+        "stock": 50,
+        "codigo": 421,
+        "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
+      }
+    }
+  },
+  {
+    "id": 19
+  },
+  {
+    "id": 20,
+    "timeStamp": 1651110605242,
+    "productos": {
+      "productos": {
+        "title": "Pantalones",
+        "price": 500,
+        "description": "Algodon",
+        "stock": 50,
+        "codigo": 421,
+        "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
+      }
+    }
+  }
+]

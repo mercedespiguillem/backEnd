@@ -3,31 +3,31 @@ const productosApi = {
         return fetch('/api/productos')
             .then(data => data.json())
     },
-    post: (nuevoProd) => {
+    post: (prod) => {
         const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(nuevoProd)
+            body: JSON.stringify(prod)
         }
         return fetch('/api/productos', options)
     },
-    put: (idProd, nuevoProd) => {
+    put: (id, newProperty) => {
         const options = {
             method: 'PUT',
-            body: JSON.stringify(nuevoProd),
+            body: JSON.stringify(newProperty),
             headers: {
                 'Content-Type': 'application/json',
             }
         }
-        return fetch(`/api/productos/${idProd}`, options)
+        return fetch(`/api/productos/${id}`, options)
     },
-    delete: (idProd) => {
+    delete: (id) => {
         const options = {
             method: 'DELETE'
         }
-        return fetch(`/api/productos/${idProd}`, options)
+        return fetch(`/api/productos/${id}`, options)
     },
 }
 

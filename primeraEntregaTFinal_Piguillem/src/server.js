@@ -5,8 +5,26 @@ const app = express();
 
 const ProductosApi = require("./contenedores/ProductosApi");
 const productosApi = new ProductosApi("products.json");
+const carritosApi = new ProductosApi("cart.json");
 
-// configuro router de productos
+
+// permisos de administrador MIDDLEWARES
+
+const esAdmin = true
+
+function crearErrorNoEsAdmin(ruta, metodo) {
+    
+}
+
+function soloAdmins(req, res, next) {
+}
+
+
+
+
+
+
+// configuro router de PRODUCTOS
 
 const productsRouter = new Router();
 
@@ -24,13 +42,15 @@ productsRouter.get("/:id", async (req, res) => {
 });
 
 productsRouter.post("/", async (req, res) => {
+  const nuevoProducto = await productosApi.save(req.body);
 
-    const prod = await productosApi.save(req.body);
-    res.json(prod);
-//   let timeStamp = Date.now();
-//   res.json({ id: await productosApi.save(req.body) });
-  //   res.json(console.log(req.body));
+  let timeStamp = Date.now();
 
+  res.json({ timeStamp, ...nuevoProducto });
+  const products = productosApi.getAll();
+
+  res.json(console.log("Nuevo producto agregado"));
+  res.json(console.log(products));
 });
 
 productsRouter.put("/:id", async (req, res) => {
@@ -47,9 +67,62 @@ productsRouter.delete("/:id", async (req, res) => {
 });
 
 //--------------------------------------------
-// configuro router de carritos
+// configuro router de CARRITOS
 
 const cartsRouter = new Router();
+
+cartsRouter.post("/", async (req, res) => {
+  let newCart = {};
+  let date = Date.now();
+  let cart = {
+    id: await carritosApi.save(newCart),
+    timeStamp: date,
+    productos: req.body,
+  };
+  res.json(await carritosApi.save(cart));
+});
+
+// NO LOGRE QUE ME ELIMINE UN CARRITO, ELIMINA TODO EL ARCHIVO
+cartsRouter.delete("/:id", async (req, res) => {
+  const cartId = req.params.id;
+  res.json(await carritosApi.deleteById(cartId));
+  res.json(console.log(`Se ha eliminado el carrito con el id: ${cartId}`));
+});
+
+cartsRouter.get("/:id/productos", async (req, res) => {
+  const cartId = req.params.id;
+  let cartProducts = await carritosApi.getById(cartId);
+  res.json(cartProducts);
+});
+
+// NO FUNCIONA
+
+productsRouter.post("/:id/productos", async (req, res) => {
+  const prodId = req.params.id;
+  const prodAgregado = await productosApi.getById(prodId);
+  let newCart = {};
+  let date = Date.now();
+  let cart = {
+    id: carritosApi.save(newCart),
+    timeStamp: date,
+    productos: prodAgregado,
+  };
+  const cartUpdated = await carritosApi.getById(cart.id);
+  res.json(cartUpdated);
+  res.send(console.log("Producto agregado con éxito"));
+});
+
+cartsRouter.delete("/:id/productos/:id_prod", async (req, res) => {
+  const cartId = req.params.id;
+  const cartProdId = req.params.id_prod;
+  const productoX = await carritosApi.getById(cartProdId);
+  res.json(await carritosApi.deleteById(productoX));
+  res.json(
+    console.log(
+      `Se ha eliminado el producto ${productoX} con el id: ${cartProdId}`
+    )
+  );
+});
 
 //--------------------------------------------
 // permisos de administrador MIDDLEWARES
