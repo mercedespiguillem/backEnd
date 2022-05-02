@@ -1,103 +1,85 @@
 [
+  [
+    {
+      "id": 958676,
+      "title": "Calza",
+      "price": 7000,
+      "description": "Calza de lycra",
+      "stock": 50,
+      "codigo": 455,
+      "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
+    }
+  ],
   {
-    "id": 1,
+    "id": 2,
+    "timeStamp": 1651463034884,
     "productos": {
-      "title": "Remera",
+      "id": 122233,
+      "title": "Camisa",
       "price": 500,
-      "description": "Remera de Algodon",
+      "description": "Algodon",
       "stock": 50,
       "codigo": 421,
       "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
     }
   },
   {
-    "id": 2
-  },
-  {
-    "id": 3
-  },
-  {
-    "id": 4
-  },
-  {
-    "id": 5
-  },
-  {
-    "id": 6
-  },
-  {
-    "id": 7
-  },
-  {
-    "id": 8,
-    "timeStamp": 1651110066249,
-    "productos": {}
-  },
-  {
-    "id": 9
-  },
-  {
-    "id": 10,
-    "timeStamp": 1651110145887
-  },
-  {
-    "id": 11
-  },
-  {
-    "id": 12,
-    "timeStamp": 1651110182496,
-    "productos": {
-      "products": {}
-    }
-  },
-  {
-    "id": 13
-  },
-  {
-    "id": 14,
-    "timeStamp": 1651110293117,
-    "productos": {}
-  },
-  {
-    "id": 15
-  },
-  {
-    "id": 16,
-    "timeStamp": 1651110331420,
-    "productos": {}
-  },
-  {
-    "id": 17
-  },
-  {
-    "id": 18,
-    "timeStamp": 1651110375257,
-    "productos": {
-      "productos": {
-        "title": "Campera",
-        "price": 500,
-        "description": "Remera de Algodon",
-        "stock": 50,
-        "codigo": 421,
-        "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
-      }
-    }
-  },
-  {
-    "id": 19
-  },
-  {
-    "id": 20,
-    "timeStamp": 1651110605242,
-    "productos": {
-      "productos": {
-        "title": "Pantalones",
-        "price": 500,
+    "id": 3,
+    "timeStamp": 1651463034884,
+    "productos": [
+      {
+        "id": 778866,
+        "title": "Guantes",
+        "price": 200,
         "description": "Algodon",
         "stock": 50,
-        "codigo": 421,
+        "codigo": 50,
+        "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
+      },
+      {
+        "id": 99986,
+        "title": "Ojotas",
+        "price": 20000,
+        "description": "running",
+        "stock": 50,
+        "codigo": 509,
         "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
       }
+    ]
+  },
+  {
+    "id": 4,
+    "timeStamp": 1651463034884,
+    "productos": [
+      {
+        "id": 56567447,
+        "title": "Buzo",
+        "price": 560,
+        "description": "Algodon",
+        "stock": 50,
+        "codigo": 50,
+        "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
+      },
+      {
+        "title": "Chaleco",
+        "price": 2080,
+        "description": "Invierno",
+        "stock": 50,
+        "codigo": 8008,
+        "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "timeStamp": 1651464085235,
+    "productos": {
+      "title": "Remera manga corta",
+      "price": 500,
+      "description": "Remera de Algodon con mangas largas",
+      "stock": 50,
+      "codigo": 421,
+      "thumbnail": "https://cdn0.iconfinder.com/data/icons/backpack-and-bag/512/bagpack-04-512.png"
     }
   }
 ]

@@ -7,10 +7,9 @@ class ProductosApi {
     this.file = file;
   }
 
-  async save(product) {
-    // El resultado de la funcion getall() es el array de productos
-    let productsArray = await this.getAll();
 
+  async save(product) {
+    let productsArray = await this.getAll();
     let id = 1;
     if (productsArray.length > 0) {
       id = productsArray[productsArray.length - 1].id + 1;
@@ -33,10 +32,8 @@ class ProductosApi {
 
   async getAll() {
     try {
-      // Lee el archivo y lo guarda en una variable
       let content = await fs.promises.readFile(`${this.file}`, "utf-8");
-      // console.log(JSON.parse(content));
-      // Retorna un array de objetos
+
       return JSON.parse(content);
     } catch (err) {
       console.log(`Error al leer los productos: `, err);
@@ -70,7 +67,7 @@ class ProductosApi {
         `Error al actualizar: El producto con el id ${id} no existe`
       );
     }
-    productsArray[index] = { ...newProperty, id: prods[index].id };
+    productsArray[filter] = { ...newProperty, id: prods[filter].id };
 
     try {
       await fs.writeFile(this.file, JSON.stringify(products, null, 2));
@@ -78,10 +75,6 @@ class ProductosApi {
       throw new Error(`Error al borrar: ${error}`);
     }
 
-    // return (this.productos[filter] = {
-    //   ...this.productos[filter],
-    //   ...newProperty,
-    // });
   }
 
   async deleteById(id) {
