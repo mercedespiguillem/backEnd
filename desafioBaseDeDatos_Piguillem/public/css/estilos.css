@@ -1,0 +1,21 @@
+h1 {
+  color: limegreen;
+}
+
+h2 {
+  color: limegreen;
+}
+
+.email {
+  color: blue;
+  font: bold;
+}
+
+.date {
+  color: brown;
+}
+
+.message {
+  color: green;
+  font: italic;
+}
