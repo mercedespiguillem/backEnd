@@ -1,0 +1,102 @@
+$ mongo
+MongoDB shell version v5.0.8
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("107cceaf-c468-4a23-9f2e-ffacfb9aca1f") }
+MongoDB server version: 5.0.8
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+db
+test
+show dbs
+admin      0.000GB
+config     0.000GB
+local      0.000GB
+mibase     0.000GB
+use ecommerce
+switched to db ecommerce
+
+AGREGAR DOCUMENTOS A LA COLECCION PRODUCTOS
+
+db.productos.insertMany([{name: "Calza", price: 1300, stock: 44, description: "Calza de running"}, {name: "Zapatillas", price: 4500, stock: 59, description: "Zapatillas de running"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("627c643c9caa8a52d6121a5d"),
+                ObjectId("627c643c9caa8a52d6121a5e")
+        ]
+}
+db.productos.insertMany([{name: "Ojotas", price: 340, stock: 19, description: "Ojotas de colores"}, {name: "Buzo crop", price: 570, stock: 48, description: "Buzo de verano"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("627c64a59caa8a52d6121a5f"),
+                ObjectId("627c64a59caa8a52d6121a60")
+        ]
+}
+db.productos.insertMany([{name: "Shorts", price: 3900, stock: 23, description: "Shorts de jean"}, {name: "Bermudas", price: 8900, stock: 47, description: "Bermuda de jean"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("627c650f9caa8a52d6121a61"),
+                ObjectId("627c650f9caa8a52d6121a62")
+        ]
+}
+
+show collections
+productos
+
+LISTAR DOCUMENTOS DE LA COLECCION PRODUCTOS
+db.productos.find()
+{ "_id" : ObjectId("627c5f02ab783dfd4fda696b"), "name" : "Remera", "price" : 550, "stock" : 55, "description" : "Remera de algodon" }
+{ "_id" : ObjectId("627c6024ab783dfd4fda696c"), "name" : "pantalon", "price" : 670, "stock" : 30, "description" : "Pantalon de Jean." }
+{ "_id" : ObjectId("627c6024ab783dfd4fda696d"), "name" : "Medias", "price" : 320, "stock" : 50, "description" : "Medias largas" }
+{ "_id" : ObjectId("627c61ec94a1e796a03e79ad"), "name" : "Campera", "price" : 3800, "stock" : 69, "description" : "Campera de abrigo" }
+{ "_id" : ObjectId("627c643c9caa8a52d6121a5d"), "name" : "Calza", "price" : 1300, "stock" : 44, "description" : "Calza de running" }
+{ "_id" : ObjectId("627c643c9caa8a52d6121a5e"), "name" : "Zapatillas", "price" : 4500, "stock" : 59, "description" : "Zapatillas de running" }
+{ "_id" : ObjectId("627c64a59caa8a52d6121a5f"), "name" : "Ojotas", "price" : 340, "stock" : 19, "description" : "Ojotas de colores" }
+{ "_id" : ObjectId("627c64a59caa8a52d6121a60"), "name" : "Buzo crop", "price" : 570, "stock" : 48, "description" : "Buzo de verano" }
+{ "_id" : ObjectId("627c650f9caa8a52d6121a61"), "name" : "Shorts", "price" : 3900, "stock" : 23, "description" : "Shorts de jean" }
+{ "_id" : ObjectId("627c650f9caa8a52d6121a62"), "name" : "Bermudas", "price" : 8900, "stock" : 47, "description" : "Bermuda de jean" }
+
+CREAR COLECCION DE MENSAJES E INSERTAR MENSAJES
+
+db.mensajes.insertMany([{message:"Hola", author: "juan@gmail.com"}, {message: "Hola Juan", author: "maria@gmail.com"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("627c66e39caa8a52d6121a63"),
+                ObjectId("627c66e39caa8a52d6121a64")
+        ]
+}
+db.mensajes.find()
+{ "_id" : ObjectId("627c66e39caa8a52d6121a63"), "message" : "Hola", "author" : "juan@gmail.com" }
+{ "_id" : ObjectId("627c66e39caa8a52d6121a64"), "message" : "Hola Juan", "author" : "maria@gmail.com" }
+
+CONTAR DOCUMENTOS DE LAS COLECCIONES 
+db.mensajes.count()
+2
+db.productos.count()
+10
+
+CRUD PRODUCTOS
+
+db.productos.insertOne({name: "Bikini", price: 4700, stock: 36, description: "Bikini amarilla"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("627c68039caa8a52d6121a65")
+}
+db.productos.find({price: {$lt: 1000}})
+uncaught exception: SyntaxError: illegal character :
+@(shell):1:19
+db.productos.find({"price": {$lt: 1000}})
+{ "_id" : ObjectId("627c5f02ab783dfd4fda696b"), "name" : "Remera", "price" : 550, "stock" : 55, "description" : "Remera de algodon" }
+{ "_id" : ObjectId("627c6024ab783dfd4fda696c"), "name" : "pantalon", "price" : 670, "stock" : 30, "description" : "Pantalon de Jean." }
+{ "_id" : ObjectId("627c6024ab783dfd4fda696d"), "name" : "Medias", "price" : 320, "stock" : 50, "description" : "Medias largas" }
+{ "_id" : ObjectId("627c64a59caa8a52d6121a5f"), "name" : "Ojotas", "price" : 340, "stock" : 19, "description" : "Ojotas de colores" }
+{ "_id" : ObjectId("627c64a59caa8a52d6121a60"), "name" : "Buzo crop", "price" : 570, "stock" : 48, "description" : "Buzo de verano" }
+
