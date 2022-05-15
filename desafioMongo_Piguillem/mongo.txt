@@ -20,7 +20,7 @@ mibase     0.000GB
 use ecommerce
 switched to db ecommerce
 
-AGREGAR DOCUMENTOS A LA COLECCION PRODUCTOS
+1) AGREGAR DOCUMENTOS A LA COLECCION PRODUCTOS-----------------------------------------------------------
 
 db.productos.insertMany([{name: "Calza", price: 1300, stock: 44, description: "Calza de running"}, {name: "Zapatillas", price: 4500, stock: 59, description: "Zapatillas de running"}])
 {
@@ -50,7 +50,7 @@ db.productos.insertMany([{name: "Shorts", price: 3900, stock: 23, description: "
 show collections
 productos
 
-LISTAR DOCUMENTOS DE LA COLECCION PRODUCTOS
+2) LISTAR DOCUMENTOS DE LA COLECCION PRODUCTOS-----------------------------------------------------------
 db.productos.find()
 { "_id" : ObjectId("627c5f02ab783dfd4fda696b"), "name" : "Remera", "price" : 550, "stock" : 55, "description" : "Remera de algodon" }
 { "_id" : ObjectId("627c6024ab783dfd4fda696c"), "name" : "pantalon", "price" : 670, "stock" : 30, "description" : "Pantalon de Jean." }
@@ -63,7 +63,7 @@ db.productos.find()
 { "_id" : ObjectId("627c650f9caa8a52d6121a61"), "name" : "Shorts", "price" : 3900, "stock" : 23, "description" : "Shorts de jean" }
 { "_id" : ObjectId("627c650f9caa8a52d6121a62"), "name" : "Bermudas", "price" : 8900, "stock" : 47, "description" : "Bermuda de jean" }
 
-CREAR COLECCION DE MENSAJES E INSERTAR MENSAJES
+CREAR COLECCION DE MENSAJES E INSERTAR MENSAJES--------------------------------------------------------------
 
 db.mensajes.insertMany([{message:"Hola", author: "juan@gmail.com"}, {message: "Hola Juan", author: "maria@gmail.com"}])
 {
@@ -77,26 +77,147 @@ db.mensajes.find()
 { "_id" : ObjectId("627c66e39caa8a52d6121a63"), "message" : "Hola", "author" : "juan@gmail.com" }
 { "_id" : ObjectId("627c66e39caa8a52d6121a64"), "message" : "Hola Juan", "author" : "maria@gmail.com" }
 
-CONTAR DOCUMENTOS DE LAS COLECCIONES 
+4) CONTAR DOCUMENTOS DE LAS COLECCIONES ------------------------------------------------------------
 db.mensajes.count()
 2
 db.productos.count()
 10
 
-CRUD PRODUCTOS
-
+5) CRUD PRODUCTOS ----------------------------------------------------------------------------------
+a)
 db.productos.insertOne({name: "Bikini", price: 4700, stock: 36, description: "Bikini amarilla"})
 {
         "acknowledged" : true,
         "insertedId" : ObjectId("627c68039caa8a52d6121a65")
 }
-db.productos.find({price: {$lt: 1000}})
-uncaught exception: SyntaxError: illegal character :
-@(shell):1:19
+b)
+I) listar productos con precio menor a 1000
+
 db.productos.find({"price": {$lt: 1000}})
 { "_id" : ObjectId("627c5f02ab783dfd4fda696b"), "name" : "Remera", "price" : 550, "stock" : 55, "description" : "Remera de algodon" }
 { "_id" : ObjectId("627c6024ab783dfd4fda696c"), "name" : "pantalon", "price" : 670, "stock" : 30, "description" : "Pantalon de Jean." }
 { "_id" : ObjectId("627c6024ab783dfd4fda696d"), "name" : "Medias", "price" : 320, "stock" : 50, "description" : "Medias largas" }
 { "_id" : ObjectId("627c64a59caa8a52d6121a5f"), "name" : "Ojotas", "price" : 340, "stock" : 19, "description" : "Ojotas de colores" }
 { "_id" : ObjectId("627c64a59caa8a52d6121a60"), "name" : "Buzo crop", "price" : 570, "stock" : 48, "description" : "Buzo de verano" }
+
+II) listar ños productos con precio entre 1000 y 3000
+
+db.productos.find( {$and: [{"price":{$gte: 1000}}, {"price": {$lte: 3000}}]})
+{ "_id" : ObjectId("627c643c9caa8a52d6121a5d"), "name" : "Calza", "price" : 1300, "stock" : 44, "description" : "Calza de running" }
+
+III) listar los productos con el precio mayor a 3000
+
+db.productos.find({"price": {$gte: 3000}})
+{ "_id" : ObjectId("627c61ec94a1e796a03e79ad"), "name" : "Campera", "price" : 3800, "stock" : 69, "description" : "Campera de abrigo" }
+{ "_id" : ObjectId("627c643c9caa8a52d6121a5e"), "name" : "Zapatillas", "price" : 4500, "stock" : 59, "description" : "Zapatillas de running" }
+{ "_id" : ObjectId("627c650f9caa8a52d6121a61"), "name" : "Shorts", "price" : 3900, "stock" : 23, "description" : "Shorts de jean" }
+{ "_id" : ObjectId("627c650f9caa8a52d6121a62"), "name" : "Bermudas", "price" : 8900, "stock" : 47, "description" : "Bermuda de jean" }
+{ "_id" : ObjectId("627c68039caa8a52d6121a65"), "name" : "Bikini", "price" : 4700, "stock" : 36, "description" : "Bikini amarilla" }
+
+IV) consulta que trae solo el nombre del producto mas barato
+
+db.productos.find({}, {"name": 1}).sort({"price": 1}).limit(1)
+{ "_id" : ObjectId("627c6024ab783dfd4fda696d"), "name" : "Medias" }
+
+c) Actualizacion de todos los prod agregando campo "stock": 100
+
+db.productos.updateMany({"stock": {$gte: 1}}, {$set: {"stock": 100}})
+{ "acknowledged" : true, "matchedCount" : 11, "modifiedCount" : 9 }
+db.productos.find()
+{ "_id" : ObjectId("627c5f02ab783dfd4fda696b"), "name" : "Remera", "price" : 550, "stock" : 100, "description" : "Remera de algodon" }
+{ "_id" : ObjectId("627c6024ab783dfd4fda696c"), "name" : "pantalon", "price" : 670, "stock" : 100, "description" : "Pantalon de Jean." }
+{ "_id" : ObjectId("627c6024ab783dfd4fda696d"), "name" : "Medias", "price" : 320, "stock" : 100, "description" : "Medias largas" }
+{ "_id" : ObjectId("627c61ec94a1e796a03e79ad"), "name" : "Campera", "price" : 3800, "stock" : 100, "description" : "Campera de abrigo" }
+{ "_id" : ObjectId("627c643c9caa8a52d6121a5d"), "name" : "Calza", "price" : 1300, "stock" : 100, "description" : "Calza de running" }
+{ "_id" : ObjectId("627c643c9caa8a52d6121a5e"), "name" : "Zapatillas", "price" : 4500, "stock" : 100, "description" : "Zapatillas de running" }
+{ "_id" : ObjectId("627c64a59caa8a52d6121a5f"), "name" : "Ojotas", "price" : 340, "stock" : 100, "description" : "Ojotas de colores" }
+{ "_id" : ObjectId("627c64a59caa8a52d6121a60"), "name" : "Buzo crop", "price" : 570, "stock" : 100, "description" : "Buzo de verano" }
+{ "_id" : ObjectId("627c650f9caa8a52d6121a61"), "name" : "Shorts", "price" : 3900, "stock" : 100, "description" : "Shorts de jean" }
+{ "_id" : ObjectId("627c650f9caa8a52d6121a62"), "name" : "Bermudas", "price" : 8900, "stock" : 100, "description" : "Bermuda de jean" }
+{ "_id" : ObjectId("627c68039caa8a52d6121a65"), "name" : "Bikini", "price" : 4700, "stock" : 100, "description" : "Bikini amarilla" }
+
+d) cambiar stock a 0 de los productos con precio mayor a 4000
+
+db.productos.updateMany({"price": {$gte: 4000}}, {$set: {"stock": 0}})
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+
+db.productos.find().pretty()
+{
+        "_id" : ObjectId("627c5f02ab783dfd4fda696b"),
+        "name" : "Remera",
+        "price" : 550,
+        "stock" : 100,
+        "description" : "Remera de algodon"
+}
+{
+        "_id" : ObjectId("627c6024ab783dfd4fda696c"),
+        "name" : "pantalon",
+        "price" : 670,
+        "stock" : 100,
+        "description" : "Pantalon de Jean."
+}
+{
+        "_id" : ObjectId("627c6024ab783dfd4fda696d"),
+        "name" : "Medias",
+        "price" : 320,
+        "stock" : 100,
+        "description" : "Medias largas"
+}
+{
+        "_id" : ObjectId("627c61ec94a1e796a03e79ad"),
+        "name" : "Campera",
+        "price" : 3800,
+        "stock" : 100,
+        "description" : "Campera de abrigo"
+}
+{
+        "_id" : ObjectId("627c643c9caa8a52d6121a5d"),
+        "name" : "Calza",
+        "price" : 1300,
+        "stock" : 100,
+        "description" : "Calza de running"
+}
+{
+        "_id" : ObjectId("627c643c9caa8a52d6121a5e"),
+        "name" : "Zapatillas",
+        "price" : 4500,
+        "stock" : 0,
+        "description" : "Zapatillas de running"
+}
+{
+        "_id" : ObjectId("627c64a59caa8a52d6121a5f"),
+        "name" : "Ojotas",
+        "price" : 340,
+        "stock" : 100,
+        "description" : "Ojotas de colores"
+}
+{
+        "_id" : ObjectId("627c64a59caa8a52d6121a60"),
+        "name" : "Buzo crop",
+        "price" : 570,
+        "stock" : 100,
+        "description" : "Buzo de verano"
+}
+{
+        "_id" : ObjectId("627c650f9caa8a52d6121a61"),
+        "name" : "Shorts",
+        "price" : 3900,
+        "stock" : 100,
+        "description" : "Shorts de jean"
+}
+{
+        "_id" : ObjectId("627c650f9caa8a52d6121a62"),
+        "name" : "Bermudas",
+        "price" : 8900,
+        "stock" : 0,
+        "description" : "Bermuda de jean"
+}
+{
+        "_id" : ObjectId("627c68039caa8a52d6121a65"),
+        "name" : "Bikini",
+        "price" : 4700,
+        "stock" : 0,
+        "description" : "Bikini amarilla"
+}
+
 
