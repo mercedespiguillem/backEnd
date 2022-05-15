@@ -220,4 +220,60 @@ db.productos.find().pretty()
         "description" : "Bikini amarilla"
 }
 
+e) Borrar los productos con precio menor a 1000
+
+db.productos.deleteMany({"price": {$lte: 1000}})
+{ "acknowledged" : true, "deletedCount" : 5 }
+
+db.productos.find()
+{ "_id" : ObjectId("627c61ec94a1e796a03e79ad"), "name" : "Campera", "price" : 3800, "stock" : 100, "description" : "Campera de abrigo" }
+{ "_id" : ObjectId("627c643c9caa8a52d6121a5d"), "name" : "Calza", "price" : 1300, "stock" : 100, "description" : "Calza de running" }
+{ "_id" : ObjectId("627c643c9caa8a52d6121a5e"), "name" : "Zapatillas", "price" : 4500, "stock" : 0, "description" : "Zapatillas de running" }
+{ "_id" : ObjectId("627c650f9caa8a52d6121a61"), "name" : "Shorts", "price" : 3900, "stock" : 100, "description" : "Shorts de jean" }
+{ "_id" : ObjectId("627c650f9caa8a52d6121a62"), "name" : "Bermudas", "price" : 8900, "stock" : 0, "description" : "Bermuda de jean" }
+{ "_id" : ObjectId("627c68039caa8a52d6121a65"), "name" : "Bikini", "price" : 4700, "stock" : 0, "description" : "Bikini amarilla" }
+
+6) CREAR USUARIO 'PEPE' CLAVE: 'ASD456' QUE SOLO PUEDA LEER LA BD ECOMMERCE ------------------
+
+use admin
+switched to db admin
+db.createUser({ "user": "pepe", "pwd": "asd456", "roles": [ {"role": "read", "db": "ecommerce"}]})
+Successfully added user: {
+        "user" : "pepe",
+        "roles" : [
+                {
+                        "role" : "read",
+                        "db" : "ecommerce"
+                }
+        ]
+}
+
+
+ mongo -u pepe -p asd456
+
+MongoDB shell version v5.0.8
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("6e0bf640-9c01-4fa6-a810-e99618edbbdd") }
+MongoDB server version: 5.0.8
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+use ecommerce
+switched to db ecommerce
+db.productos.find()
+{ "_id" : ObjectId("627c61ec94a1e796a03e79ad"), "name" : "Campera", "price" : 3800, "stock" : 100, "description" : "Campera de abrigo" }
+{ "_id" : ObjectId("627c643c9caa8a52d6121a5d"), "name" : "Calza", "price" : 1300, "stock" : 100, "description" : "Calza de running" }
+{ "_id" : ObjectId("627c643c9caa8a52d6121a5e"), "name" : "Zapatillas", "price" : 4500, "stock" : 0, "description" : "Zapatillas de running" }
+{ "_id" : ObjectId("627c650f9caa8a52d6121a61"), "name" : "Shorts", "price" : 3900, "stock" : 100, "description" : "Shorts de jean" }
+{ "_id" : ObjectId("627c650f9caa8a52d6121a62"), "name" : "Bermudas", "price" : 8900, "stock" : 0, "description" : "Bermuda de jean" }
+{ "_id" : ObjectId("627c68039caa8a52d6121a65"), "name" : "Bikini", "price" : 4700, "stock" : 0, "description" : "Bikini amarilla" }
+db.productos.insertOne({name: "Hola"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("628159923a273ee2cb604955")
+}
 
