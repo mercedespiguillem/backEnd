@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "name": "segundaentregatfinal_piguillem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "firebase-admin": "^10.2.0",
+    "knex": "^2.0.0",
+    "mongodb": "^4.6.0",
+    "mongoose": "^6.3.3",
+    "mysql": "^2.18.1",
+    "sqlite3": "^5.0.8"
+  }
+}
