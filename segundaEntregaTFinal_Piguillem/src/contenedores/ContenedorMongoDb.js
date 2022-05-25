@@ -1,26 +1,23 @@
 import mongoose from 'mongoose'
 import config from '../config.js'
 
-class ContenedorMongoDb {
-    constructor(config, schema, model) {
-        this.mongoose = config.mongodb;
-        this.schema = schema;
-        this.model = model;
+await mongoose.connect(config.mongodb.cnxStr, config.mongodb.options)
 
-    }
+class ContenedorMongoDb {
+
+        constructor(collection, schema) {
+            this.coleccion = mongoose.model(collection, schema)
+        }
+
+
 
 async create(obj) {
         try {
-        const URL = 'mongodb://localhost:27017/ecommerce'
-        await mongoose.connect(URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
         console.log('Base de datos conectada');
 
         console.log('create');
         
-        const saveModel = new this.model(obj);
+        const saveModel = new this.coleccion(obj);
         let objSaved = await saveModel.save();
         this.console.log(saved);
 
@@ -32,16 +29,10 @@ async create(obj) {
 
 async read() {
     
-    
     try {
-        const URL = 'mongodb://localhost:27017/ecommerce'
-        await mongoose.connect(URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
         console.log('Base de datos conectada');
         console.log('Read')
-        let productosLeidos = await this.model.find({});
+        let productosLeidos = await this.coleccion.find({});
         this.console.log(usuarios);
     } 
     catch (error) {
@@ -53,14 +44,9 @@ async read() {
 async update(condition, newProperty) {
     
     try {
-        const URL = 'mongodb://localhost:27017/ecommerce'
-        await mongoose.connect(URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
         console.log('Base de datos conectada');
         console.log('Update');
-        let updatedProd = await this.model.updateOne({ condition }, { $set: `${newProperty}` });
+        let updatedProd = await this.coleccion.updateOne({ condition }, { $set: `${newProperty}` });
         console.log(updatedProd);
     } 
     catch (error) {
@@ -70,14 +56,10 @@ async update(condition, newProperty) {
 
 async delete(condition) {
     try {
-        const URL = 'mongodb://localhost:27017/ecommerce'
-        await mongoose.connect(URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
+
         console.log('Base de datos conectada');
         console.log('Delete');
-        let deletedProd = await this.model.deleteOne({ condition });
+        let deletedProd = await this.coleccion.deleteOne({ condition });
         console.log(deletedProd); 
     }
     catch (error) {

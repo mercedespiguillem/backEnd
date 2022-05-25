@@ -1,13 +1,8 @@
 import admin from "firebase-admin";
 import config from "../config.js";
 
-// const admin = require("firebase-admin");
-
-const serviceAccount = require("../../DB/coderhouse-5bd1b-firebase-adminsdk-l1qlb-db54ff7aa3.json");
-
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://coderhouse-5bd1b.firebaseio.com",
+  credential: admin.credential.cert(config.firebase)
 });
 
 console.log("Base firebase conectada");
@@ -15,7 +10,7 @@ console.log("Base firebase conectada");
 class ContenedorFirebase {
   constructor(coleccion) {
     this.db = admin.firestore();
-    this.query = db.collection("coleccion");
+    this.query = db.collection(coleccion);
   }
 
   async create(obj) {

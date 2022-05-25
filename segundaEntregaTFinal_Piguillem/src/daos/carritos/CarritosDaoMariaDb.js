@@ -3,7 +3,7 @@ import config from '../../config.js'
 
 class CarritosDaoMariaDb extends CarritosDaoSQL {
     constructor() {
-        super(config.mariaDb, config.mariaDb); 
+        super(config.mariaDb); 
      }
 }
 
