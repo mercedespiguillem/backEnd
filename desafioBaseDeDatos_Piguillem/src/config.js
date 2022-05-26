@@ -1,11 +1,11 @@
-const config = {
+export default {
   // configuracion del cliente sqlite3, luego los llamo haciendo config.sqlite3
   sqlite3: {
     client: "sqlite3",
     connection: {
       filename: `./DB/ecommerce.sqlite`,
     },
-    useNullAsDefault: true,
+    useNullAsDefault: true
   },
 
   // configuracion del cliente mysqlMariaDB
@@ -18,7 +18,6 @@ const config = {
       database: "coderhouse",
       port: "3306",
     },
+    pool: { min: 0, max: 700 }
   },
 };
-
-export default config;

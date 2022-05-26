@@ -1,6 +1,6 @@
 import knex from "knex";
 
-class ContainerSql  {
+export default class ContainerSql {
   constructor(config, table) {
     this.knex = knex(config);
     this.table = table;
@@ -8,7 +8,7 @@ class ContainerSql  {
 
   async createTable(table) {
     return await this.knex.schema.dropTableIfExists(table).finally(() => {
-      return await this.knex.schema.createTable(table, (table) => {
+      return this.knex.schema.createTable(table, (table) => {
         table.increments("id").primary();
         table.string("name", 50).notNullable();
         table.string("code", 10).notNullable();
@@ -41,6 +41,3 @@ class ContainerSql  {
     await this.knex.destroy();
   }
 }
-
-export default ContainerSql;
-// module.exports =  ContainerSql;

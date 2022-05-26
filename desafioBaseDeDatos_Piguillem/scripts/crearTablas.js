@@ -1,10 +1,10 @@
-import ContainerSql from "../contenedores/ContainerSql";
-import { mysqlDB, sqlite3 } from "../src/config";
-// import config from "./config";
 
-const productosApi = new ContainerSql(mysqlDB, "products");
-const mensajesApi = new ContainerSql(sqlite3, "messages");
+import ContainerSql from "../src/contenedores/ContainerSql.js";
 
+import config from "../src/config.js";
+
+const productosApi = new ContainerSql(config.mysqlDB, "products");
+const mensajesApi = new ContainerSql(config.sqlite3, "messages");
 
 //------------------------------------------
 // productos en MariaDb
