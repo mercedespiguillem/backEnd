@@ -1,5 +1,4 @@
-// const { promises: fs } = require("fs");
-const fs = require("fs");
+import { promises } from "fs";
 
 // const file = "/mensajes.json";
 
@@ -21,7 +20,7 @@ class Messages {
     productsArray.push(newProduct);
 
     try {
-      await fs.promises.writeFile(
+      await promises.writeFile(
         this.file,
         JSON.stringify(productsArray, null, 2)
       );
@@ -35,12 +34,12 @@ class Messages {
   async getAll() {
     try {
       // Lee el archivo y lo guarda en una variable
-      let content = await fs.promises.readFile(`${this.file}`, "utf-8");
+      let content = await promises.readFile(this.file, "utf-8");
       // console.log(JSON.parse(content));
       // Retorna un array de objetos
       return JSON.parse(content);
     } catch (err) {
-      console.log(`Error al leer los productos: `, err);
+      console.log(`Error al leer los mensajes: `, err);
       return [];
     }
   }
@@ -65,7 +64,7 @@ class Messages {
     const rest = productsArray.filter((el) => parseInt(el.id) != parseInt(id));
     await this.deleteAll();
     try {
-      await fs.promises.writeFile(this.file, JSON.stringify(rest, null, 2));
+      await promises.writeFile(this.file, JSON.stringify(rest, null, 2));
     } catch (error) {
       console.log(`Error al borrar: `, error);
     }
@@ -80,7 +79,7 @@ class Messages {
       );
       console.log(` Se eliminó el producto:`, rest);
       try {
-        fs.promises.writeFile(this.file, JSON.stringify(rest, null, 2));
+        promises.writeFile(this.file, JSON.stringify(rest, null, 2));
       } catch (err) {
         console.log(err);
       }
@@ -91,7 +90,7 @@ class Messages {
   }
 
   async deleteAll() {
-    fs.unlink(this.file, (error) => {
+    unlink(this.file, (error) => {
       error
         ? console.log(`error al borrar archivo: ${error}`)
         : console.log(`Archivo borrado con exito`);
@@ -99,4 +98,4 @@ class Messages {
   }
 }
 
-module.exports = Messages;
+export default Messages;
