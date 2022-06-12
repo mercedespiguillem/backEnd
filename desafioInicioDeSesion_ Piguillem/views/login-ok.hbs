@@ -1,0 +1,24 @@
+<div class="container text-center my-3">
+    <div class="jumbotron" style="background-color: rgb(151, 182, 151);color: white;">
+        <h2><i>Bienvenido {{usuario}}</i></h2>
+        <h1>Tu usuario ha sido creado con éxito!</h1>
+        
+        <br>
+        <h3>Nombre: {{nombre}}</h3>
+        <h3>Apellido: {{apellido}}</h3>
+        <h3>Email: {{email}}</h3>
+        <button class="btn btn-dark my-5" onclick="logout()">Cerrar sesión</button>
+        <button class="btn btn-warning my-5" onclick="redirect(/home)">Ir a la tienda</button>
+    </div>
+</div>
+
+<script>
+    function redireccionar(pagina) {
+        location.href = pagina;
+    } 
+
+    function logout() {
+        console.log('logout');
+        redireccionar('/logout')
+    }
+</script>

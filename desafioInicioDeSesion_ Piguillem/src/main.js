@@ -29,23 +29,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// app.set("views", "./views");
-// app.set("view engine", "ejs");
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
 app.use(
   session({
     store: MongoStore.create({
+      // mongoUrl: conection string del local mongodb://ip/mibase
       mongoUrl:
-        "mongodb+srv://mechipi:NCEm7CFzMBjP4qQ@cluster0.cjkzi.mongodb.net/sesiones?retryWrites=true&w=majority",
+        "mongodb+srv://mechipi:12345@cluster0.cjkzi.mongodb.net/?retryWrites=true&w=majority",
       mongoOptions: advancedOptions,
     }),
     secret: "secreto",
     resave: false,
     saveUninitialized: false,
+    rolling: true,
     cookie: {
-      maxAge: 600000,
+      maxAge: 6000,
     },
   })
 );
