@@ -39,7 +39,7 @@ app.use(
     store: MongoStore.create({
       // mongoUrl: conection string del local mongodb://ip/mibase
       mongoUrl:
-        "mongodb+srv://mechipi:12345@cluster0.cjkzi.mongodb.net/?retryWrites=true&w=majority",
+        "mongodb+srv://",
       mongoOptions: advancedOptions,
     }),
     secret: "secreto",
