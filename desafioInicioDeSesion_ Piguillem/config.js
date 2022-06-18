@@ -1,7 +1,14 @@
-const TIEMPO_EXPIRACION = 600000;
-const URL_BASE_DE_DATOS = 'mongodb://localhost:27017/coderhouse';
+// require("dotenv").config();
 
-module.exports = {
-    TIEMPO_EXPIRACION,
-    URL_BASE_DE_DATOS
-}
+// const tiempoExpiracion = process.env.TIEMPO_EXPIRACION;
+// const URLdb = process.env.URL_BASE_DE_DATOS;
+
+// console.log({
+//   tiempoExpiracion,
+//   URLdb,
+// });
+
+// module.exports = {
+//   tiempoExpiracion,
+//   URLdb,
+// };
