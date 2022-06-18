@@ -7,13 +7,26 @@ require("dotenv").config();
 
 const tiempoExpiracion = process.env.TIEMPO_EXPIRACION;
 const URLdb = process.env.URL_BASE_DE_DATOS;
-const port = process.env.PORT;
+
+// MINIMIST
+
+const parseArgs = require("minimist");
+
+const args = parseArgs(process.argv.slice(2));
+
+// si le paso un --port por linea de comandos, toma ese. sino toma el port de options
+
+const options = { default: { port: "8080" } };
+const port = args.port || options.default.port;
+// console.log(parseArgs(["-a", 1], options));
 
 console.log({
   tiempoExpiracion,
   URLdb,
   port,
 });
+
+// -----------------------------------------------------------
 
 const session = require("express-session");
 const passport = require("passport");
