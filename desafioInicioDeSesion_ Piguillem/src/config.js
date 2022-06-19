@@ -4,7 +4,7 @@
 //   mongoRemote: {
 //     client: "mongodb",
 //     cnxStr:
-//     
+    
 // //   },
 //   sqlite3: {},
 //   mariaDb: {},

@@ -5,12 +5,14 @@ import MongoStore from "connect-mongo";
 import handlebars from "express-handlebars";
 
 // import config from "./config.js";
+// require("dotenv").config();
 
 // import { Server as HttpServer } from 'http'
 // import { Server as Socket } from 'socket.io'
 
 import authWebRouter from "./routers/web/auth.js";
 import homeWebRouter from "./routers/web/home.js";
+import { config } from "dotenv";
 // import productosApiRouter from './routers/api/productos.js'
 
 // import addProductosHandlers from './routers/ws/productos.js'
@@ -33,13 +35,16 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+// const tiempoExpiracion = process.env.TIEMPO_EXPIRACION;
+// const mongoAtlasString = process.env.STRING_MONGO_ATLAS;
+// const URLdb = process.env.URL_BASE_DE_DATOS;
 
+console.log(mongoAtlasString);
 app.use(
   session({
     store: MongoStore.create({
       // mongoUrl: conection string del local mongodb://ip/mibase
-      mongoUrl:
-        "mongodb+srv://",
+      mongoUrl: mongoAtlasString,
       mongoOptions: advancedOptions,
     }),
     secret: "secreto",

@@ -1,12 +1,17 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bCrypt = require("bcrypt");
+
 require("dotenv").config();
 
 // ------------VARIABLES DE AMBIENTE
 
 const tiempoExpiracion = process.env.TIEMPO_EXPIRACION;
-const URLdb = process.env.URL_BASE_DE_DATOS;
+const mongoLocalURL = process.env.URL_BASE_DE_DATOS;
+
+const mongoAtl = process.env.MI_MONGO_ATLAS;
+
+// const port = process.env.PORT;
 
 // MINIMIST
 
@@ -18,12 +23,12 @@ const args = parseArgs(process.argv.slice(2));
 
 const options = { default: { port: "8080" } };
 const port = args.port || options.default.port;
-// console.log(parseArgs(["-a", 1], options));
+console.log(parseArgs(["-a", 1], options));
 
 console.log({
   tiempoExpiracion,
-  URLdb,
-  port,
+  mongoLocalURL,
+  mongoAtl,
 });
 
 // -----------------------------------------------------------
@@ -33,7 +38,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
 const routes = require("./routes");
-// const config = require("./config");
+const config = require("./config");
 const controllersdb = require("./controllersdb");
 const User = require("./models");
 
@@ -121,7 +126,7 @@ app.use(
     cookie: {
       httpOnly: false,
       secure: false,
-      maxAge: tiempoExpiracion,
+      maxAge: 6000,
     },
   })
 );
@@ -164,7 +169,7 @@ app.get("/ruta-protegida", checkAuthentication, (req, res) => {
 
 app.get("/logout", routes.getLogout);
 
-controllersdb.conectarDB(URLdb, (err) => {
+controllersdb.conectarDB(mongoAtl, (err) => {
   if (err) return console.log("Base de datos no conectada");
   console.log("Base de datos conectada");
 
