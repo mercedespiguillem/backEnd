@@ -136,6 +136,8 @@ app.use(passport.session());
 
 app.get("/", routes.getRoot);
 
+app.get("/info", routes.getInfo);
+
 //LOGIN
 app.get("/login", routes.getLogin);
 app.post(
