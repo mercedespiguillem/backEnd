@@ -57,6 +57,7 @@ function getInfo(req, res) {
     Memoria: +process.memoryUsage(),
     SistOperativo: +process.platform,
     ProcesoTitulo: +process.title,
+    Procesadores: numCpu,
   });
 }
 
